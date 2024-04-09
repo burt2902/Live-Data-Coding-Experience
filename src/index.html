@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Live Data Coding Experience - </title>
+</head>
+ 
+<body>
+ 
+    <h1>Football World Cup Score Board</h1>
+
+    <table>   
+        <colgroup>
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+        </colgroup>
+        
+        <tbody>
+
+            <tr>
+                <td></td>
+                <td>
+                    <label>Home</label>
+                    <h1><label name="lscoreHome">0</label></h1>
+                </td>
+                <td>
+                    <label>Away</label>
+                    <h1><label name="lscoreAway">0</label></h1>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td><h3>Start game</h3></td>
+                <td>
+                    <label for="lhome">Home team:</label>
+                    <input type="text" id="lhome" name="homeTeam">
+                </td>
+                <td>
+                    <label for="laway">Away team:</label>
+                    <input type="text" id="laway" name="awayTeam">
+                </td>
+                <td>
+                    <input type="button" value="Execute" name="startGame">
+                </td>
+            </tr>
+
+            <tr>
+                <td><h3>Update score</h3></td>
+                <td>
+                    <label for="nhome">Home team:</label>
+                    <input type="number" id="nhome" name="scoreHomeTeam">
+                </td>
+                <td>
+                    <label for="naway">Away team:</label>
+                    <input type="number" id="naway" name="scoreAwayTeam">
+                </td>
+                <td>
+                    <input type="button" value="Execute" name="updateScore">
+                </td>
+            </tr>
+
+            <tr>
+                <td><h3>End game</h3></td>
+                <td></td><td></td>
+                <td>
+                    <input type="button" value="Execute" name="endGame">
+                </td>
+            </tr>
+            
+            <tr>
+                <td><h3>Get summary</h3></td>
+                <td></td><td></td>
+                <td>
+                    <input type="button" value="Execute" name="getSummary" readonly="readonly">
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <label for="tasummary">Summary of games by total score:</label><br>
+    <textarea id="tasummary" name="tasummary" rows="10" cols="80" readonly="readonly"></textarea>
+
+    <script src="js/scoreboard.js"></script>
+
+</body> 
+ 
+</html>
