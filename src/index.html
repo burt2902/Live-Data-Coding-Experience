@@ -24,12 +24,12 @@
             <tr>
                 <td></td>
                 <td>
-                    <label>Home</label>
-                    <h1><label name="lscoreHome">0</label></h1>
+                    <h1><label id="lhometeam">Home</label></h1>
+                    <h1><label id="lhomescore">0</label></h1>
                 </td>
                 <td>
-                    <label>Away</label>
-                    <h1><label name="lscoreAway">0</label></h1>
+                    <h1><label id="lawayteam">Away</label></h1>
+                    <h1><label id="lawayscore">0</label></h1>
                 </td>
             </tr>
 
@@ -37,38 +37,38 @@
             <tr>
                 <td><h3>Start game</h3></td>
                 <td>
-                    <label for="lhome">Home team:</label>
-                    <input type="text" id="lhome" name="homeTeam">
+                    <label for="thometeam">Home team:</label>
+                    <input type="text" id="thometeam" name="homeTeam">
                 </td>
                 <td>
-                    <label for="laway">Away team:</label>
-                    <input type="text" id="laway" name="awayTeam">
+                    <label for="tawayteam">Away team:</label>
+                    <input type="text" id="tawayteam" name="awayTeam">
                 </td>
                 <td>
-                    <input type="button" value="Execute" name="startGame">
+                    <input type="button" onclick="startGame()" value="Execute" name="startGame">
                 </td>
             </tr>
 
             <tr>
                 <td><h3>Update score</h3></td>
                 <td>
-                    <label for="nhome">Home team:</label>
-                    <input type="number" id="nhome" name="scoreHomeTeam">
+                    <label for="nhomescore">Home team:</label>
+                    <input type="number" id="nhomescore" name="scoreHomeTeam">
                 </td>
                 <td>
-                    <label for="naway">Away team:</label>
-                    <input type="number" id="naway" name="scoreAwayTeam">
+                    <label for="nawayscore">Away team:</label>
+                    <input type="number" id="nawayscore" name="scoreAwayTeam">
                 </td>
                 <td>
-                    <input type="button" value="Execute" name="updateScore">
+                    <input type="button" onclick="updateScore()" value="Execute" name="updateScore">
                 </td>
             </tr>
 
             <tr>
-                <td><h3>End game</h3></td>
+                <td><h3>Finish game</h3></td>
                 <td></td><td></td>
                 <td>
-                    <input type="button" value="Execute" name="endGame">
+                    <input type="button" onclick="finishGame()" value="Execute" name="finishGame">
                 </td>
             </tr>
             
@@ -76,17 +76,21 @@
                 <td><h3>Get summary</h3></td>
                 <td></td><td></td>
                 <td>
-                    <input type="button" value="Execute" name="getSummary" readonly="readonly">
+                    <input type="button" onclick="getSummary()" value="Execute" name="getSummary" readonly="readonly">
                 </td>
             </tr>
 
         </tbody>
     </table>
-
+    
+    <br>
     <label for="tasummary">Summary of games by total score:</label><br>
-    <textarea id="tasummary" name="tasummary" rows="10" cols="80" readonly="readonly"></textarea>
+    <textarea id="tasummary" name="tasummary" rows="10" cols="100" readonly="readonly"></textarea><br> <br> <br> 
+    <label for="talog">Console log:</label><br>
+    <textarea id="talog" name="talog" rows="10" cols="100" readonly="readonly"></textarea>
 
     <script src="js/scoreboard.js"></script>
+    <script src="js/htmlAPI.js"></script>
 
 </body> 
  

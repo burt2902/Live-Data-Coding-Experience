@@ -14,7 +14,7 @@ class ScoreBoard {
     }
 
     startGame(home, away) {
-        if(typeof(home) !== 'string' || typeof(away) !== 'string')
+        if(typeof(home) !== 'string' || typeof(away) !== 'string' || away ==='' || home === '' )
             throw new Error('startGame: invalid parameters!');
         if(this.#gameInProgress == true)
             throw new Error('startGame: game already in progress!');
@@ -34,7 +34,8 @@ class ScoreBoard {
     }
 
     updateScore(home, away) {
-        if(typeof(home) !== 'number' || typeof(away) !== 'number' || home < 0 || away < 0)
+//        if(typeof(home) !== 'number' || typeof(away) !== 'number' || home < 0 || away < 0)
+        if(isNaN(home) || isNaN(away) || home < 0 || away < 0)
             throw new Error('updateScore: invalid parameters!');
         if(this.#gameInProgress == false)
             throw new Error('updateScore: game not started!');

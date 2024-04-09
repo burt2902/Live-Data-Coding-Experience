@@ -7,6 +7,7 @@ const tatestlog = document.getElementById('tatestlog');
     console.log = function (message) {
         oldLog.apply(console, arguments);
         tatestlog.append(message + '\n');
+        tatestlog.scrollTop = tatestlog.scrollHeight;
     };
 })();
 
@@ -43,7 +44,8 @@ function EXPECT_EXCEPTION(func) {
 function tc_StartGameInvalidParams(board) {
     EXPECT_EXCEPTION(function(){ return board.startGame(); });
     EXPECT_EXCEPTION(function(){ return board.startGame('h'); });
-    EXPECT_EXCEPTION(function(){ return board.startGame('a', 15); });
+    EXPECT_EXCEPTION(function(){ return board.startGame('h', 15); });
+    EXPECT_EXCEPTION(function(){ return board.startGame('', 'a'); });
 }
 
 function tc_StartGameProperParams(board) {
@@ -61,6 +63,7 @@ function tc_UpdateScoreInvalidParams(board) {
     EXPECT_EXCEPTION(function(){ return board.updateScore('h'); });
     EXPECT_EXCEPTION(function(){ return board.updateScore('a', 15); });
     EXPECT_EXCEPTION(function(){ return board.updateScore(5, -1); });
+    EXPECT_EXCEPTION(function(){ return board.updateScore(NaN, -1); });
 }
 
 function tc_UpdateScoreProperParams(board) {
