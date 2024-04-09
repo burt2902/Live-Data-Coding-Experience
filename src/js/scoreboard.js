@@ -1,46 +1,36 @@
 class ScoreBoard {
-
-    #gameInProgress = new Boolean();
-    #homeTeam = new String();
-    #awayTeam = new String();
-    #homeScore = new Number();
-    #awayScore = new Number();
+    
+    #game = undefined;
     #board = [];
-    #summary = [];
     #boardSorted = new Boolean();
+    #summary = [];
 
     constructor() {
-        this.#gameInProgress = false;
     }
 
     startGame(home, away) {
         if(typeof(home) !== 'string' || typeof(away) !== 'string' || away ==='' || home === '' )
             throw new Error('startGame: invalid parameters!');
-        if(this.#gameInProgress == true)
+        if(this.#game != undefined)
             throw new Error('startGame: game already in progress!');
-        this.#homeTeam = home;
-        this.#awayTeam = away;
-        this.#homeScore = 0;
-        this.#awayScore = 0;
-        this.#gameInProgress = true;
+        this.#game = { homeTeam:home, awayTeam:away, homeScore:0, awayScore:0 };    
     }
 
     finishGame() {
-        if(this.#gameInProgress == false)
+        if(this.#game == undefined)
             throw new Error('updateScore: game not started!');
-        this.#gameInProgress = false;
-        this.#board.unshift( { homeTeam:this.#homeTeam, awayTeam:this.#awayTeam, homeScore:this.#homeScore, awayScore:this.#awayScore } );
+        this.#board.unshift( this.#game );
+        this.#game = undefined;
         this.#boardSorted = false;
     }
 
     updateScore(home, away) {
-//        if(typeof(home) !== 'number' || typeof(away) !== 'number' || home < 0 || away < 0)
         if(isNaN(home) || isNaN(away) || home < 0 || away < 0)
             throw new Error('updateScore: invalid parameters!');
-        if(this.#gameInProgress == false)
+        if(this.#game == undefined)
             throw new Error('updateScore: game not started!');
-        this.#homeScore = home;
-        this.#awayScore = away;
+        this.#game.homeScore = home;
+        this.#game.awayScore = away;
     }
 
     getSummary() {
