@@ -5,9 +5,6 @@ class ScoreBoard {
     #boardSorted = new Boolean();
     #summary = [];
 
-    constructor() {
-    }
-
     startGame(home, away) {
         if(typeof(home) !== 'string' || typeof(away) !== 'string' || away ==='' || home === '' )
             throw new Error('startGame: invalid parameters!');
