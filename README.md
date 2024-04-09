@@ -15,7 +15,7 @@ Receiving the pair score; home team score and away team score updates a game sco
 Those games with the same total score will be returned ordered by the most recently added to our system.
 
 
-## ScoreBoard Class description
+## ScoreBoard class description
  The ScoreBoard class provides below methods addressing the above requirements. It does not provide additional getters to query for e.g. current score, teams' names or game status.
 
 ### startGame(home, away)  
