@@ -45,3 +45,12 @@ Method can be called at any time.
 
 Params: none.  
 Returns: a sorted list of all finished games.
+
+
+## Project directories
+- src - Contains all project sources and README.md file
+    - scoreboard
+        - scoreboard.js - JavaScript imlementation of a ScoreBoard class
+    - test
+        - test[.html|.js] - Automated API and functional tests
+        - manualTestPage[.html|.js] - Test page for manual testing
