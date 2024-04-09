@@ -13,8 +13,8 @@
     
     <label for="tatestlog">Test log:</label><br>
     <textarea id="tatestlog" name="tatestlog" rows="30" cols="100" readonly="readonly"></textarea><br><br>
-    <input type="button" value="Execute tests" name="excuteTests">&emsp;
-    <input type="button" value="Clear log" name="clearLog">
+    <input type="button" onclick="runTests()" value="Run tests">&emsp;
+    <input type="button" onclick="document.getElementById('tatestlog').innerText = ''" value="Clear log">
 
     <script src="js/scoreboard.js"></script>
     <script src="test/test.js"></script>

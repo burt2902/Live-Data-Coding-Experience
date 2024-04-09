@@ -16,7 +16,7 @@ Those games with the same total score will be returned ordered by the most recen
 
 
 ## ScoreBoard class description
- The ScoreBoard class provides below methods addressing the above requirements. It does not provide additional getters to query for e.g. current score, teams' names or game status.
+ The ScoreBoard class provides below methods addressing the above requirements. It does not provide additional getters to query for e.g. current score, teams' names or game status. All methods are synchrounous, no promise mechanisms are used.
 
 ### startGame(home, away)  
 Starts the game with initial score 0-0.  
@@ -44,4 +44,4 @@ Gets the summary of all finished games sorted by total score descending. Games w
 Method can be called at any time.
 
 Params: none.  
-Returns: a sorted list of all finished games, throws an exception on error.
+Returns: a sorted list of all finished games.

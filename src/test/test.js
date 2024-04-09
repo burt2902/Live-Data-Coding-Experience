@@ -31,7 +31,7 @@ function EXPECT_EXCEPTION(func) {
     try {
         func();
     } catch(err) {
-        console.log('Exception received: ' + err.message);
+        console.log('Expected exception received: ' + err.message);
         return;
     }
     throw new Error('Exception missing!');
@@ -81,16 +81,80 @@ function tc_FinishGameWhenGameInProgress(board) {
 }
 
 function tc_FinishGameWhenNoGameInProgress(board) {
+    board.startGame('h', "a");
+    board.finishGame();
     EXPECT_EXCEPTION(function(){ return board.finishGame(); });
 }
 
 
+
+function verifySummary(board, expectedSummary) {
+    var summary = JSON.stringify(board.getSummary());
+    console.log(summary);
+    if(summary != expectedSummary)
+        throw new Error('Expected summary ' + expectedSummary + ', but received ' + summary);
+}
+
+function tc_GetSummary(board) {
+    // No game started
+    verifySummary(board, '[]');
+    // Game started but not finished yet
+    board.startGame('H1', "A1");
+    board.updateScore(1, 1);
+    verifySummary(board, '[]');
+    // 1st game finished
+    board.finishGame();
+    verifySummary(board, '["H1 1 - A1 1"]');
+    // 2nd game finished
+    board.startGame('H2', "A2");
+    board.updateScore(0, 1);
+    board.finishGame();
+    verifySummary(board, '["H1 1 - A1 1","H2 0 - A2 1"]');
+    // 3rd game finished
+    board.startGame('H3', "A3");
+    board.updateScore(0, 2);
+    board.finishGame();
+    verifySummary(board, '["H3 0 - A3 2","H1 1 - A1 1","H2 0 - A2 1"]');
+}
+
+function tc_GetSummaryFromExcercise(board) {
+    // 1st game
+    board.startGame('Mexico', 'Canada');
+    board.updateScore(0, 5);
+    board.finishGame();
+    // 2nd game finished
+    board.startGame('Spain', 'Brazil');
+    board.updateScore(10, 2);
+    board.finishGame();
+    // 3rd game finished
+    board.startGame('Germany', 'France');
+    board.updateScore(2, 2);
+    board.finishGame();
+    // 4th game finished
+    board.startGame('Uruguay', 'Italy');
+    board.updateScore(6, 6);
+    board.finishGame();
+    // 5th game finished
+    board.startGame('Argentina', 'Australia');
+    board.updateScore(3, 1);
+    board.finishGame();
+    // Validate
+    verifySummary(board, '["Uruguay 6 - Italy 6","Spain 10 - Brazil 2","Mexico 0 - Canada 5","Argentina 3 - Australia 1","Germany 2 - France 2"]' );
+}
+
+
 // Run test cases
-runTest(tc_StartGameInvalidParams, 'startGame() with invalid params');
-runTest(tc_StartGameProperParams, 'startGame() with proper params');
-runTest(tc_StartGameWhenAnotherGameInProgress, 'startGame() when another game is in progress');
-runTest(tc_UpdateScoreInvalidParams, 'updateScore() with invalid params');
-runTest(tc_UpdateScoreProperParams, 'updateScore() with proper params');
-runTest(tc_UpdateScoreWhenNoGameInProgress, 'updateScore() when no game is in progress');
-runTest(tc_FinishGameWhenGameInProgress, 'finishGame() when game is in progress');
-runTest(tc_FinishGameWhenNoGameInProgress, 'finishGame() when no game is in progress');
+function runTests() {
+    runTest(tc_StartGameInvalidParams, 'startGame() with invalid params');
+    runTest(tc_StartGameProperParams, 'startGame() with proper params');
+    runTest(tc_StartGameWhenAnotherGameInProgress, 'startGame() when another game is in progress');
+    runTest(tc_UpdateScoreInvalidParams, 'updateScore() with invalid params');
+    runTest(tc_UpdateScoreProperParams, 'updateScore() with proper params');
+    runTest(tc_UpdateScoreWhenNoGameInProgress, 'updateScore() when no game is in progress');
+    runTest(tc_FinishGameWhenGameInProgress, 'finishGame() when game is in progress');
+    runTest(tc_FinishGameWhenNoGameInProgress, 'finishGame() when no game is in progress');
+    runTest(tc_GetSummary, 'getSummary() test');
+    runTest(tc_GetSummaryFromExcercise, 'getSummary() test - data provided with the excercise');
+}
+
+runTests();

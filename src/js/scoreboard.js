@@ -6,6 +6,8 @@ class ScoreBoard {
     #homeScore = new Number();
     #awayScore = new Number();
     #board = [];
+    #summary = [];
+    #boardSorted = new Boolean();
 
     constructor() {
         this.#gameInProgress = false;
@@ -26,7 +28,9 @@ class ScoreBoard {
     finishGame() {
         if(this.#gameInProgress == false)
             throw new Error('updateScore: game not started!');
-        this.#board.push( [this.#homeTeam, this.#homeScore, this.#awayTeam, this.#awayScore] );
+        this.#gameInProgress = false;
+        this.#board.unshift( { homeTeam:this.#homeTeam, awayTeam:this.#awayTeam, homeScore:this.#homeScore, awayScore:this.#awayScore } );
+        this.#boardSorted = false;
     }
 
     updateScore(home, away) {
@@ -38,8 +42,16 @@ class ScoreBoard {
         this.#awayScore = away;
     }
 
-    *getSummary() {
-        console.log(this.#board);
-        throw new Error('Not implemented!');
+    getSummary() {
+        // Sort entries, prevent from sorting until new games are added
+        if(this.#boardSorted == false) {
+            this.#board.sort( function(a, b)  {return b.homeScore + b.awayScore - a.homeScore - a.awayScore } );
+            this.#boardSorted == true;
+            this.#summary =  [];
+            for(var n=0; n<this.#board.length; n++) {
+                this.#summary.push( this.#board[n].homeTeam + ' ' + this.#board[n].homeScore + ' - ' + this.#board[n].awayTeam + ' ' + this.#board[n].awayScore );
+            }
+        }
+        return this.#summary;
     }
 }
