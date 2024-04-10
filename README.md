@@ -47,6 +47,12 @@ Params: none.
 Returns: a sorted list of all finished games.
 
 
+## Assumptions
+ It is assumed that the amout of games data to process is going to be low. Basing on that assumption:
+ - sorting does not have to be super efficient;
+ - sorting compare function and how finished games data is stored guarantees that games with the same total score will be sorted newest to oldest; there is no need for storing additional information like e.g. timestamp or game number.
+
+
 ## Project directories
 - src - Contains all project sources and README.md file
     - scoreboard
