@@ -41,7 +41,9 @@ class ScoreBoard {
     * @throws {Error}
     */
     updateScore(home, away) {
-        if(isNaN(home) || isNaN(away) || home < 0 || away < 0)
+        var h = parseFloat(home);
+        var a = parseFloat(away);
+        if(isNaN(home) || isNaN(away) || (h | 0) !== h || (a | 0) !== a || home < 0 || away < 0)
             throw new Error('updateScore: invalid parameters!');
         if(this.#game == undefined)
             throw new Error('updateScore: game not started!');

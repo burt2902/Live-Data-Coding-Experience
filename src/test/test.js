@@ -63,15 +63,16 @@ function tc_UpdateScoreInvalidParams(board) {
     EXPECT_EXCEPTION(function(){ return board.updateScore('h'); });
     EXPECT_EXCEPTION(function(){ return board.updateScore('a', 15); });
     EXPECT_EXCEPTION(function(){ return board.updateScore(5, -1); });
-    EXPECT_EXCEPTION(function(){ return board.updateScore(NaN, -1); });
+    EXPECT_EXCEPTION(function(){ return board.updateScore(NaN, 1); });
+    EXPECT_EXCEPTION(function(){ return board.updateScore(5, 1.2); });
 }
 
 function tc_UpdateScoreProperParams(board) {
     board.startGame('h', "a");
     board.updateScore(0, 1);
     board.updateScore(1, 1);
-    board.updateScore(20, 10);
-    board.updateScore(10, 5);
+    board.updateScore("20", 10);
+    board.updateScore("10", "5");
 }
 
 function tc_UpdateScoreWhenNoGameInProgress(board) {
